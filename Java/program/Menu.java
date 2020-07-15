@@ -7,6 +7,7 @@ public class Menu {
 
     public static void main(String[] args) {
 
+        System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "\n--- TASK MANAGER 1.0 ---");
         Menu menu = new Menu();
         while (true){
             menu.menu();
@@ -17,7 +18,7 @@ public class Menu {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(ConsoleColors.GREEN_BOLD + "\nPlease select an option:\n" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD + "\nPlease select an number:" + ConsoleColors.RESET);
         System.out.println(ConsoleColors.BLUE_BOLD  +"+ --Actions-- +" + ConsoleColors.RESET);
         System.out.println(
                         " 1. List\n" +
@@ -38,7 +39,7 @@ public class Menu {
 
         switch (selection){
             case 1:
-                List.list();
+                TaskList.list(null);
                 break;
             case 2:
                 Add.add();
