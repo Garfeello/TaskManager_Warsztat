@@ -68,7 +68,7 @@ public class Remove {
         List<String> outList = new ArrayList<>();
 
         for (String value : valuesToRemove){
-            boolean add = outList.add(value);
+            outList.add(value);
         }
 
         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "SAVING..." + ConsoleColors.RESET);

@@ -24,7 +24,7 @@ public class Menu {
                         " 1. List\n" +
                         " 2. Add\n" +
                         " 3. Remove\n" +
-                        " 4. exit"
+                        ConsoleColors.RED_BOLD + " 4. exit" + ConsoleColors.RESET
         );
 
         System.out.println(ConsoleColors.BLUE_BOLD + "+ ----------- +" + ConsoleColors.RESET);
@@ -50,4 +50,5 @@ public class Menu {
         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Exitting...");
         System.exit(0);
     }
+
 }

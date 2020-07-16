@@ -15,40 +15,42 @@ public class TaskList<S> {
 
     public static String[] list(String[] values) {
 
-        Path tasks = Paths.get("tasks.csv");
-
         String[] listOfRecords = new String[0]; // glowna tabela z wartosciami
 
         System.out.println(ConsoleColors.GREEN_BOLD + "Printing list... \n" + ConsoleColors.RESET);
 
-        try{
-            int counter = 0;
-            for (String value : Files.readAllLines(tasks)){
-
-                listOfRecords = Arrays.copyOf(listOfRecords, listOfRecords.length + 1);
-                listOfRecords[listOfRecords.length - 1] = value;   // przypisuje do tabeli
-
-                System.out.println(counter + ". " + listOfRecords[counter]); // drukuje oznaczenie miejsca na którym znajduje sie rekord
-
-                counter++; // liczy miejsca
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        listOfRecords = getTasks( listOfRecords);
+        for (int i = 0; i < listOfRecords.length; i++ ) {
+            System.out.println(i + ". " + listOfRecords[i]);
+        } // drukuje rekordy
 
         System.out.println(ConsoleColors.GREEN_BOLD + "\nList printed... " + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "Press enter to continue" + ConsoleColors.RESET);
 
+        System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "Press enter to continue" + ConsoleColors.RESET);
         try {
             System.in.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-
-
         return listOfRecords;
+    }
+
+    public static String[] getTasks(String[] recordContainer) {
+
+        Path tasks = Paths.get("tasks.csv");
+
+        try{
+            for (String value : Files.readAllLines(tasks)){
+                recordContainer = Arrays.copyOf(recordContainer, recordContainer.length + 1);
+                recordContainer[recordContainer.length - 1] = value;   // przypisuje do tabeli
+            }
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return recordContainer;
     }
 
 }
