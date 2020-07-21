@@ -10,15 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import static program.TaskList.getTasks;
-import static program.TaskList.list;
 
 public class Add {
 
-    public static void main(String[] args) {
-
-        add();
-
-    }
 
     public static void add(){
         Scanner scanner = new Scanner(System.in);
@@ -52,8 +46,8 @@ public class Add {
 
     public static void zapisywanieDoPliku(String[] newTaskContainer) {
 
-        String[] valuesToAdd = new String[0];    //
-        valuesToAdd = getTasks(valuesToAdd);   // pobrana tabelka z klasy List
+        String[] valuesToAdd = new String[0];   //
+        valuesToAdd = getTasks(valuesToAdd);   // pobrana tabelka z Metody List
 
         Path path1 = Paths.get("tasks.csv");
         List<String> outList = new ArrayList<>();

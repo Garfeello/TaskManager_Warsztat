@@ -6,14 +6,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-public class TaskList<S> {
+public class TaskList {
 
-    public static void main(String[] args) {
 
-        //list(null);
-    }
-
-    public static String[] list(String[] values) {
+    public static String[] printTasks() {
 
         String[] listOfRecords = new String[0]; // glowna tabela z wartosciami
 
@@ -32,7 +28,6 @@ public class TaskList<S> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return listOfRecords;
     }
 

@@ -9,8 +9,8 @@ public class Menu {
 
         System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "\n--- TASK MANAGER 1.0 ---");
 
-        Menu menu = new Menu();
         while (true) menu();
+
     }
 
     public static void menu(){
@@ -18,15 +18,14 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(ConsoleColors.GREEN_BOLD + "\nPlease select an number:" + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.BLUE_BOLD  +"+ --Actions-- +" + ConsoleColors.RESET);
 
+        System.out.println(ConsoleColors.BLUE_BOLD  +"+ --Actions-- +" + ConsoleColors.RESET);
         System.out.println(
                         " 1. List\n" +
                         " 2. Add\n" +
                         " 3. Remove\n" +
                         ConsoleColors.RED_BOLD + " 4. exit" + ConsoleColors.RESET
         );
-
         System.out.println(ConsoleColors.BLUE_BOLD + "+ ----------- +" + ConsoleColors.RESET);
 
         int selection = 0;
@@ -38,9 +37,9 @@ public class Menu {
         }
 
         switch (selection) {
-            case 1 -> TaskList.list(null);
+            case 1 -> TaskList.printTasks();
             case 2 -> Add.add();
-            case 3 -> Remove.remove();
+            case 3 -> Remove.downloadValues();
             case 4 -> exit();
             default -> System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Invalid selection" + ConsoleColors.RESET);
         }

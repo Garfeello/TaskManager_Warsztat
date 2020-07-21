@@ -12,40 +12,41 @@ import java.util.Scanner;
 
 public class Remove {
 
-    public static void main(String[] args) {
-        //remove();
-    }
 
-    public static void remove(){
-        Scanner scanner = new Scanner(System.in);
+    public static void downloadValues(){
 
         System.out.println( ConsoleColors.RED_BOLD_BRIGHT  + "Removing tasks loading list..." + ConsoleColors.RESET);
 
-        String[] valuesToRemove = new String[0];        //
-        valuesToRemove = TaskList.list(valuesToRemove); // pobrana tabelka z klasy List
+        String[] valuesToRemove = new String[0];             //
+        valuesToRemove = TaskList.printTasks(); // pobrana tabelka z metody List
 
         System.out.println(ConsoleColors.RED_BOLD + "Type in NUMBER in order to remove record, quit - to save" + ConsoleColors.RESET);
 
-        String decisionHolder = scanner.next();
+        valuesToRemove = deletionOfValues(valuesToRemove);
+
+        saveOfValues(valuesToRemove);
+    }
+
+    public static String[] deletionOfValues( String[] valuesToRemove ) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String decisionHolder = scanner.next(); // bd wybieral plik do usuniecia, wychodzi quitem dlatego parsuje ponizej
 
         do {
             try {
-                int decHolder_NumericValue = Integer.parseInt(decisionHolder);  // wybor pliku do usuniecia
+                int decHolder_NumericValue = Integer.parseInt(decisionHolder);
 
-                for (int i = 0; i < valuesToRemove.length; i ++){   //petla do usuwania rekordow
-                    if (decHolder_NumericValue == i){
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + valuesToRemove[decHolder_NumericValue] + "  --RECORD REMOVED!" + ConsoleColors.RESET);
+                valuesToRemove = ArrayUtils.remove(valuesToRemove, decHolder_NumericValue);     // usuwanie rekordu
 
-                        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + valuesToRemove[i] + "  --RECORD REMOVED!" + ConsoleColors.RESET);
-                        valuesToRemove = ArrayUtils.remove(valuesToRemove, i);      // usuwanie rekordu
-
-                        System.out.println(ConsoleColors.GREEN_BOLD + "Remaining records:" + ConsoleColors.RESET);
-                        for (int j = 0; j < valuesToRemove.length; j++){
-                            System.out.println(j + ". " + valuesToRemove[j]);  // pokazuje pozostale pozycje.
-                        }
-                    }
+                System.out.println(ConsoleColors.GREEN_BOLD + "Remaining records:" + ConsoleColors.RESET);
+                for (int i = 0; i < valuesToRemove.length; i++){
+                    System.out.println(i + ". " + valuesToRemove[i]);  // pokazuje pozostale pozycje.
                 }
+
                 System.out.println(ConsoleColors.RED_BOLD + "Type in NUMBER in order to remove record, quit - to save" + ConsoleColors.RESET);
-                decisionHolder = scanner.next(); //czeka na akcje zeby nie stworzyc nieskonczonej petli z for
+                decisionHolder = scanner.next(); //czeka na akcje aby wybrac next record.
 
             } catch (NumberFormatException e) {
                 if (decisionHolder.equals("quit")){
@@ -54,16 +55,18 @@ public class Remove {
                     System.out.println("It has to be a number !");
                     decisionHolder = scanner.next(); //czeka na akcje zeby nie stworzyc nieskonczonej petli w przypadku kiedy wartosc nie jest cyfra
                 }
+
             } catch (ArrayIndexOutOfBoundsException ex){
                 System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "RECORD DOES NOT EXIST !");
+                decisionHolder = scanner.next();
             }
 
         } while (!decisionHolder.equals("quit"));
 
-        saveList(valuesToRemove);
+        return valuesToRemove;
     }
 
-    public static void saveList(String[] valuesToRemove) {
+    public static void saveOfValues(String[] valuesToRemove) {
         Path main = Paths.get("tasks.csv");
         List<String> outList = new ArrayList<>();
 
@@ -75,15 +78,16 @@ public class Remove {
 
         try {
             Files.write(main, outList);
-            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "SAVED !\n" +
+            System.out.println(
+                    ConsoleColors.GREEN_BOLD_BRIGHT + "SAVED !\n" +
                     ConsoleColors.CYAN_BOLD_BRIGHT + "Press enter to continue" + ConsoleColors.RESET
             );
             System.in.read();
+
         } catch (IOException e){
             System.out.println("Unable to save file");
         }
 
-
-        // System.out.println(Arrays.toString(valuesToRemove) + valuesToRemove.length);
     }
 }
+
