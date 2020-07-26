@@ -15,8 +15,8 @@ public class TaskList {
 
         System.out.println(ConsoleColors.GREEN_BOLD + "Printing list... \n" + ConsoleColors.RESET);
 
-        listOfRecords = getTasks( listOfRecords);
-        for (int i = 0; i < listOfRecords.length; i++ ) {
+        listOfRecords = getTasks(listOfRecords);
+        for (int i = 0; i < listOfRecords.length; i++) {
             System.out.println(i + ". " + listOfRecords[i]);
         } // drukuje rekordy
 
@@ -35,13 +35,13 @@ public class TaskList {
 
         Path tasks = Paths.get("tasks.csv");
 
-        try{
-            for (String value : Files.readAllLines(tasks)){
+        try {
+            for (String value : Files.readAllLines(tasks)) {
                 recordContainer = Arrays.copyOf(recordContainer, recordContainer.length + 1);
                 recordContainer[recordContainer.length - 1] = value;   // przypisuje do tabeli
             }
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

@@ -13,9 +13,9 @@ import java.util.Scanner;
 public class Remove {
 
 
-    public static void downloadValues(){
+    public static void downloadValues() {
 
-        System.out.println( ConsoleColors.RED_BOLD_BRIGHT  + "Removing tasks loading list..." + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Removing tasks loading list..." + ConsoleColors.RESET);
 
         String[] valuesToRemove = new String[0];             //
         valuesToRemove = TaskList.printTasks(); // pobrana tabelka z metody List
@@ -27,7 +27,7 @@ public class Remove {
         saveOfValues(valuesToRemove);
     }
 
-    public static String[] deletionOfValues( String[] valuesToRemove ) {
+    public static String[] deletionOfValues(String[] valuesToRemove) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -41,7 +41,7 @@ public class Remove {
                 valuesToRemove = ArrayUtils.remove(valuesToRemove, decHolder_NumericValue);     // usuwanie rekordu
 
                 System.out.println(ConsoleColors.GREEN_BOLD + "Remaining records:" + ConsoleColors.RESET);
-                for (int i = 0; i < valuesToRemove.length; i++){
+                for (int i = 0; i < valuesToRemove.length; i++) {
                     System.out.println(i + ". " + valuesToRemove[i]);  // pokazuje pozostale pozycje.
                 }
 
@@ -49,14 +49,14 @@ public class Remove {
                 decisionHolder = scanner.next(); //czeka na akcje aby wybrac next record.
 
             } catch (NumberFormatException e) {
-                if (decisionHolder.equals("quit")){
+                if (decisionHolder.equals("quit")) {
                     System.out.print("");
                 } else {
                     System.out.println("It has to be a number !");
                     decisionHolder = scanner.next(); //czeka na akcje zeby nie stworzyc nieskonczonej petli w przypadku kiedy wartosc nie jest cyfra
                 }
 
-            } catch (ArrayIndexOutOfBoundsException ex){
+            } catch (ArrayIndexOutOfBoundsException ex) {
                 System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "RECORD DOES NOT EXIST !");
                 decisionHolder = scanner.next();
             }
@@ -70,7 +70,7 @@ public class Remove {
         Path main = Paths.get("tasks.csv");
         List<String> outList = new ArrayList<>();
 
-        for (String value : valuesToRemove){
+        for (String value : valuesToRemove) {
             outList.add(value);
         }
 
@@ -80,11 +80,11 @@ public class Remove {
             Files.write(main, outList);
             System.out.println(
                     ConsoleColors.GREEN_BOLD_BRIGHT + "SAVED !\n" +
-                    ConsoleColors.CYAN_BOLD_BRIGHT + "Press enter to continue" + ConsoleColors.RESET
+                            ConsoleColors.CYAN_BOLD_BRIGHT + "Press enter to continue" + ConsoleColors.RESET
             );
             System.in.read();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Unable to save file");
         }
 

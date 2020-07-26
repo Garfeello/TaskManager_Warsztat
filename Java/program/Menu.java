@@ -13,15 +13,15 @@ public class Menu {
 
     }
 
-    public static void menu(){
+    public static void menu() {
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(ConsoleColors.GREEN_BOLD + "\nPlease select an number:" + ConsoleColors.RESET);
 
-        System.out.println(ConsoleColors.BLUE_BOLD  +"+ --Actions-- +" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "+ --Actions-- +" + ConsoleColors.RESET);
         System.out.println(
-                        " 1. List\n" +
+                " 1. List\n" +
                         " 2. Add\n" +
                         " 3. Remove\n" +
                         ConsoleColors.RED_BOLD + " 4. exit" + ConsoleColors.RESET
@@ -32,7 +32,7 @@ public class Menu {
 
         try {
             selection = scanner.nextInt();
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Write a number !" + ConsoleColors.RESET);
         }
 
@@ -45,7 +45,7 @@ public class Menu {
         }
     }
 
-    public static void exit(){
+    public static void exit() {
         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Exitting...");
         System.exit(0);
     }

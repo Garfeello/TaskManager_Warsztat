@@ -14,7 +14,7 @@ import static program.TaskList.getTasks;
 public class Add {
 
 
-    public static void add(){
+    public static void add() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Adding tasks, press any button to start writing, quit - to quit" + ConsoleColors.RESET);
